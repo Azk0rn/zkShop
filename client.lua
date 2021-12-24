@@ -3,17 +3,19 @@ ESX = nil
 Citizen.CreateThread(function()
     while ESX == nil do
 	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-	Citizen.Wait(0)
+	Citizen.Wait(5000)
     end  
 end)
 
 --------------
 
 local open = false 
-local MainMenu = RageUI.CreateMenu("Location", "INTERACTION")
+local MainMenu = RageUI.CreateMenu("Superette", "nos produits")
+local SubMenu = RageUI.CreateSubMenu(MainMenu, "Nouritures", "Nouritures")
+local SubMenu1 = RageUI.CreateSubMenu(MainMenu, "Boissons", "Boisson")
 MainMenu.Display.Header = true 
 MainMenu.Closed = function()
-  open = true
+  open = false
 end
 
 --------------------
@@ -36,54 +38,70 @@ end)
 
 ------------------------
 
-function magasin()
-    if open then 
-        open = false 
-        RageUI.Visible(MainMenu, false)
-        return
-    else
-        open = true 
-        RageUI.Visible(MainMenu, true)
-        CreateThread(function()
-            while open do 
-                RageUI.IsVisible(MainMenu,  function()
-                    for k, v in pairs(Config.Item) do 
+function RageUI.PoolMenus:Shop()
+    MainMenu:IsVisible(function(button1)
 
-                        RageUI.Button(v.item, nil, {RightLabel = "~g~"..v.prix.."$"}, true , {
-                            onSelected = function()
-                                TriggerServerEvent('azkloc:achat', v)
-                            end
-                            })
-                    end
-                end)
-            end
+		button1:AddButton("Nouritures", nil, {RightLabel = "→→", IsDisabled = false }, function(onSelected)
+			if onSelected then
+			end
+		end, SubMenu)
+
+        button1:AddButton("Boissons", nil, {RightLabel = "→→", IsDisabled = false }, function(onSelected)
+			if onSelected then
+			end
+		end, SubMenu1)
+
+        end, function()
         end)
-    end
+
+        SubMenu:IsVisible(function(wesh)
+            for k, v in pairs(Config.Nouritures) do 
+            wesh:AddButton(v.Nom, nil, {RightLabel = "~g~"..v.prix.."$", IsDisabled = false }, function(onSelected)
+                if onSelected then
+                    TriggerServerEvent('azk:super')
+                end
+            end)
+    
+            end
+        end, function()
+        end)
+        
+        SubMenu1:IsVisible(function(Kingder)
+            for k, v in pairs(Config.Boisson) do
+            Kingder:AddButton(v.Nom, nil, {RightLabel = "~g~"..v.prix.."$", IsDisabled = false }, function(onSelected)
+                if onSelected then
+                    TriggerServerEvent('azk:super')
+                end
+            end)
+        end
+        end, function()
+    end)
 end
 
+
 Citizen.CreateThread(function()
-    while true do 
+    while true do
+      local wait = 750
+      local playerCoords = GetEntityCoords(PlayerPedId(), false)
+  
+      for k, v in pairs(Config.Marker) do
 
-        local wait = 1000
-
-            for k, v in pairs(Config.Blips) do 
-
-                local plyCoords = GetEntityCoords(PlayerPedId())
-                local dist = GetDistanceBetweenCoords(plyCoords, v.x, v.y, v.z, true)
-
-                if dist <= 10.0 then 
-                    wait = 0
-                    DrawMarker(22, v.x, v.y, v.z, 0.0, 0.0, 0.0, 0.0,0.0,0.0, 0.3, 0.3, 0.3, 255, 255, 0 , 255, true, true, p19, true) 
-
-                if dist <= 1.5 then 
-                    wait = 0 
-                    Visual.Subtitle('Appuyez sur [E] pour acceder au menu', 1)
-                    if IsControlJustPressed(1,51) then
-                        magasin() 
-
-                     end
-                end
-                end
-            end
+        local distance = GetDistanceBetweenCoords(playerCoords, v.x, v.y, v.z, true)
+  
+        if distance <= 5.0 then
+          wait = 0
+          DrawMarker(22, v.x, v.y, v.z, 0.0, 0.0, 0.0, 0.0,0.0,0.0, 0.4, 0.4, 0.4, 255, 255, 0, 255, false, true, p19, false)  
+              
+        if distance <= 1.5 then
+          wait = 0
+         Visual.Subtitle("Appuyer sur ~b~[E]~s~ pour accéder au ~b~Menu", 1) 
+  
+        if IsControlJustPressed(1, 51) then
+            RageUI.Visible(MainMenu, not RageUI.Visible(MainMenu))
+                  end
+              end
+          end
+        end
+          Citizen.Wait(wait)
     end
-end)
+  end)
