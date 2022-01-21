@@ -58,7 +58,7 @@ function RageUI.PoolMenus:Shop()
             for k, v in pairs(Config.Nouritures) do 
             wesh:AddButton(v.Nom, nil, {RightLabel = "~g~"..v.prix.."$", IsDisabled = false }, function(onSelected)
                 if onSelected then
-                    TriggerServerEvent('azk:super')
+                    TriggerServerEvent('azk:super',v)
                 end
             end)
     
@@ -70,7 +70,7 @@ function RageUI.PoolMenus:Shop()
             for k, v in pairs(Config.Boisson) do
             Kingder:AddButton(v.Nom, nil, {RightLabel = "~g~"..v.prix.."$", IsDisabled = false }, function(onSelected)
                 if onSelected then
-                    TriggerServerEvent('azk:super')
+                    TriggerServerEvent('azk:super',v)
                 end
             end)
         end
