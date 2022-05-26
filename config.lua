@@ -1,56 +1,69 @@
-VisuBlips = true
+Superette = {
 
-Config = {
-
-    Boisson = {
-        {Nom = "Eau", Label = "water", prix = 1},
-        {Nom = "Fanta", Label = "water", prix = 1},
-        {Nom = "Coca", Label = "water", prix = 1},
-        {Nom = "Orangina", Label = "water", prix = 1}
+    Marker = {
+        vector3(373.875, 325.896, 102.666), -- 24.34
+        vector3(2557.45, 382.28, 107.72),
+        vector3(-3038.93, 585.95, 7.00),
+        vector3(-3241.92, 1001.46, 11.93),
+        vector3(547.43, 2671.71, 41.25),
+        vector3(1961.46, 3740.67, 31.44),
+        vector3(2678.91, 3280.67, 54.34),
+        vector3(1729.21, 6414.13, 34.13),
+        vector3(1135.80, -982.28, 45.51),
+        vector3(-1222.91, -906.98, 11.42),
+        vector3(-1487.55, -379.10, 39.26),
+        vector3(-2968.24, 390.91,  14.14),
+        vector3(1166.02, 2708.93, 37.25),
+        vector3(1392.56, 3604.68, 33.08),
+        vector3(-48.51, -1757.51, 28.52),
+        vector3(1163.37, -323.80, 68.30),
+        vector3(-707.50, -914.26, 18.31),
+        vector3(-1820.52, 792.51, 137.21),
+        vector3(1698.38, 4924.40, 41.16),
+        vector3(25.82, -1345.22, 28.6),
+        vector3(-864.2, -2409.29, 13.13),
+        vector3(967.74, -1867.96, 30.4),
     },
 
     Nouritures = {
-        {Nom = "Pain", Label = "bread", prix = 1},
-        {Nom = "Hamburger", Label = "bread", prix = 1},
-        {Nom = "Frites", Label = "bread", prix = 1},
-        {Nom = "Kebab", Label = "bread", prix = 1}
+        {name = "Pain", price = 1, item = "bread"},
+        {name = "Burger", price = 8, item = "bread"},
+        {name = "Chips", price = 4, item = "bread"},
+        {name = "Kebab", price = 5, item = "bread"},
+        {name = "Pizza", price = 2, item = "bread"},
     },
 
-    Blips = {
-        vector3(26.12, -1347.07, 29.5),
-        vector3(-48.52, -1757.36, 29.42),
-        vector3(-1487.59, -379.75, 40.16),
-        vector3(375.36, 325.81, 103.22),
-        vector3(1727.98, 6414.01, 35.16),
-        vector3(1700.25, 4927.02, 42.67),
-        vector3(1961.73, 3741.7, 32.34),
-        vector3(548.64, 2671.77, 43.43),
-        vector3(1391.0, 3604.44, 35.53),
-        vector3(-1821.8, 792.11, 138.14),
-        vector3(2557.41, 382.43, 108.62),
-        vector3(1162.83, -323.18, 69.21),
-        vector3(1136.67, -982.0, 46.42),
-        vector3(-707.97, -913.67, 19.22),
-        vector3(-3039.63, 586.65, 7.91),
-        vector3(-3242.02, 1001.63, 12.83),
+    Boissons = {
+        {name = "Eau", price = 1, item = "water"},
+        {name = "Orangina", price = 2, item = "water"},
+        {name = "Coca", price = 2, item = "water"},
+        {name = "Ice Tea", price = 2, item = "water"},
+        {name = "Jus d'Orange", price = 3, item = "water"}
     },
-    
-    Marker = {
-        vector3(-1488.04, -378.7, 40.16),
-        vector3(1136.0, -982.91, 46.42),
-        vector3(1163.39, -323.87, 69.21),
-        vector3(-48.58, -1757.73, 29.42),
-        vector3(25.72, -1345.61, 29.5),
-        vector3(-707.50, -914.61, 19.22),
-        vector3(374.45, 327.73, 103.57),
-        vector3(2555.66, 382.47, 108.62),
-        vector3(-1820.64, 792.39, 138.11),
-        vector3(-3041.03, 585.38, 7.91),
-        vector3(-3243.9, 1001.62, 12.83),
-        vector3(547.9, 2669.58, 42.16),
-        vector3(1960.46, 3742.31, 32.34),
-        vector3(1392.16, 3604.53, 34.98),
-        vector3(1698.2, 4924.74, 42.06),
-        vector3(1729.85, 6416.01, 35.04),
+
+    Vigneron = {
+        {name = "Vin", price = 20},
+        {name = "Grand Cru", price = 250},
+    },
+
+    Brasseur = {
+        {name = "Biere", price = 8},
+        {name = "Biere", price = 12},
+    },
+
+    Chocolatier = {
+        {name = "Kinder", price = 2},
+        {name = "Milka", price = 5},
+    },
+
+    Tabac = {
+        {name = "Malboro", price = 12},
+        {name = "Camel", price = 12},
+    },
+
+    PedsPosition = {
+        vector3(140.34, -1280.49, 29.34)
     }
 }
+
+Superette.WebHook = "Votre WebHook"

@@ -1,23 +1,17 @@
----
---- @author Dylan MALANDAIN, Kalyptus
---- @version 1.0.0
---- File created at [24/05/2021 00:00]
----
-
-Keys = {};
-
----Register
----@param Controls string
----@param ControlName string
----@param Description string
----@param Action function
----@return Keys
----@public
-function Keys.Register(Controls, ControlName, Description, Action)
-    RegisterKeyMapping(string.format('keys-%s', ControlName), Description, "keyboard", Controls)
-    RegisterCommand(string.format('keys-%s', ControlName), function()
+Keys = {}
+Keys.Register = function(Controls, ControlName, Description, Action)
+    local _Keys = {
+        CONTROLS = Controls
+    }
+    RegisterKeyMapping(string.format('rageui-%s', ControlName), Description, "keyboard", Controls)
+    RegisterCommand(string.format('rageui-%s', ControlName), function(source, args)
         if (Action ~= nil) then
             Action();
         end
     end, false)
+    return setmetatable(_Keys, Keys)
+end
+
+function Keys:Exists(Controls)
+    return self.CONTROLS == Controls and true or false
 end
