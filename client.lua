@@ -104,7 +104,7 @@ function MenuSuperette()
 
 
             if not RageUI.Visible(MainMenu) and not RageUI.Visible(NouritureMenu) and not RageUI.Visible(BoissonsMenu) and not RageUI.Visible(LocauxProduits) then
-                MainMenu = RMenu:DeleteType("Pôle emploi", true)
+                MainMenu = RMenu:DeleteType("Superette", true)
         end
     end
 end
